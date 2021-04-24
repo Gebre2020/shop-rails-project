@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   get '/' => 'sessions#welcome'
 
   get '/login' => 'sessions#new'
@@ -7,5 +8,7 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   resources :users
+  resources :products
+  resources :orders
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
