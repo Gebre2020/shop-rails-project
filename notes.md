@@ -42,3 +42,10 @@ Orders
   - tax
   - check_out
   - has_many :order_items
+# Rails request / response flow?
+    
+    - client side sends a request to the browser
+    - recieving server sends to router if it is existing, else it gives an error
+    - router will send to appropriate controller# for action
+    - controller will intract with model, => model interacting with db
+    - retrieve data and send that to view
