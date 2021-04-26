@@ -17,3 +17,9 @@
 # 10.times do
 #     User.create(username: Faker::Name)
 # end
+
+
+#  Product.create([{title: "shirt", description: "red color", unit_price: 25},
+#     {title: "shoe", description: "white color", unit_price: 95},
+#     {title: "hat", description: "black color", unit_price: 15}
+# ])
