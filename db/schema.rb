@@ -10,39 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_212922) do
+ActiveRecord::Schema.define(version: 2021_04_26_180003) do
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
+    t.float "sub_total"
+    t.float "tax"
+    t.float "total"
+    t.float "check_out_cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_orders", force: :cascade do |t|
     t.float "unit_price"
     t.integer "quantity"
-    t.float "total_price"
+    t.float "sub_total"
     t.integer "product_id", null: false
     t.integer "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.float "subtotal"
-    t.float "total"
-    t.float "tax"
-    t.float "check_out"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_product_orders_on_order_id"
+    t.index ["product_id"], name: "index_product_orders_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "title"
-    t.string "descripion"
-    t.float "price"
-    t.integer "user_id", null: false
-    t.integer "order_item_id", null: false
+    t.string "description"
+    t.float "unit_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_item_id"], name: "index_products_on_order_item_id"
-    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "user_products", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.index ["product_id"], name: "index_user_products_on_product_id"
+    t.index ["user_id"], name: "index_user_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,8 +56,8 @@ ActiveRecord::Schema.define(version: 2021_04_23_212922) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
-  add_foreign_key "products", "order_items"
-  add_foreign_key "products", "users"
+  add_foreign_key "product_orders", "orders"
+  add_foreign_key "product_orders", "products"
+  add_foreign_key "user_products", "products"
+  add_foreign_key "user_products", "users"
 end
