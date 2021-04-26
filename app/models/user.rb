@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :products
-  has_many :order_items, through: :products
-
   validates :username, :email, uniqueness: true, presence: true
+
+  has_many :orders
+  has_many :user_product
+  has_many :products, through: :user_product
+
 end
