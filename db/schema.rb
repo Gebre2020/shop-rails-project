@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_180003) do
+ActiveRecord::Schema.define(version: 2021_04_23_212922) do
 
   create_table "orders", force: :cascade do |t|
     t.float "sub_total"
@@ -37,15 +37,9 @@ ActiveRecord::Schema.define(version: 2021_04_26_180003) do
     t.string "title"
     t.string "description"
     t.float "unit_price"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_products", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "product_id", null: false
-    t.index ["product_id"], name: "index_user_products_on_product_id"
-    t.index ["user_id"], name: "index_user_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,6 +52,4 @@ ActiveRecord::Schema.define(version: 2021_04_26_180003) do
 
   add_foreign_key "product_orders", "orders"
   add_foreign_key "product_orders", "products"
-  add_foreign_key "user_products", "products"
-  add_foreign_key "user_products", "users"
 end
