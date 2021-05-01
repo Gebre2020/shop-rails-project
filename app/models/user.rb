@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  has_secure_password
+  has_secure_password  #authenticate, validate password &/or password confirmation
+  has_many :products  # array
+  has_many :product_orders, through: :products
+  
   validates :username, :email, uniqueness: true, presence: true
-
-  has_many :orders
-  has_many :user_product
-  has_many :products, through: :user_product
+  validates :password, presence: true
+  validates :password, length: { in: 6..10 }
 
 end
