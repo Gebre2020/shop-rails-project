@@ -1,15 +1,24 @@
-<h1>Sign up!</h1>
+<h1>New Users Sign Up Page</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_with model: @user, url: signup_path do |f| %>
+
+ <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <% @user.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username %><br><br>
 
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.email_field :email %><br><br>
 
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password %><br><br>
 
-  <%= f.submit "Sign Up" %>
+  <%= f.submit "Create Account" %>
 
 <% end %>
