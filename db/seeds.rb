@@ -8,8 +8,8 @@
 
 # User.create([
 #     {username: "test3", email: "test2@test3.com", password: "test3"},
-#     {username: "test4", email: "test2@test4.com", password: "test4"},
-#     {username: "test5", email: "test2@test5.com", password: "test5"}
+#     {username: "test4", email: "test4@test4.com", password: "test4"},
+#     {username: "test5", email: "test5@test5.com", password: "test5"}
 # ])
 
 # faker gem
@@ -19,7 +19,7 @@
 # end
 
 
-#  Product.create([{title: "shirt", description: "red color", unit_price: 25},
-#     {title: "shoe", description: "white color", unit_price: 95},
-#     {title: "hat", description: "black color", unit_price: 15}
+#  Product.create([{title: "Dress", description: "Medium Size", unit_price: 65, user_id:1},
+#     {title: "shoe", description: "white color", unit_price: 95, user_id:2},
+#     {title: "hat", description: "black color", unit_price: 15, user_id:1}
 # ])
