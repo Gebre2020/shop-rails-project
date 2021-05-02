@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         if user && user.authenticate(params[:user][:password])
             # logging in
             session[:user_id] = user.id
-            redirect_to user_path(user), notice: "Logged in successfully"  # show page
+            redirect_to user_path(user)  # show page
         else
             flash[:message] = "Incorrect login info, please try again"
             redirect_to "/login"
@@ -21,8 +21,8 @@ class SessionsController < ApplicationController
     end
     
     def destroy
-        if !session[:name].nil?
-            session.delete :name
+        if !session[:user_id].nil?
+            session.delete :user_id
           else
           redirect_to '/'
           end        
